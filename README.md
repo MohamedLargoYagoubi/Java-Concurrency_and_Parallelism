@@ -6,7 +6,7 @@
 
 <div align="center">
   <b>
-    TODO.
+    Bienvenido al repositorio, aquí se explicarán conceptos básicos y avanzados de programación concurrente y paralela, con ejemplos de código en Java. Este repositorio ha sido creado para consolidar los conocimientos adquiridos en las clases de "Sistemas Concurrentes y Paralelos" y resolver los ejercicios de los laboratorios. ¡Feliz aprendizaje!
   </b>
 </div>
 
@@ -36,7 +36,7 @@
 </div>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/JAVA-B1361E?style=flat-square&logo=openjdk&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JAVA-B1361E?style=for-the-badge&logo=openjdk&logoColor=white"/>
 </p>
 
 <div align="center">
@@ -51,7 +51,7 @@
 </div>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/🏗️%20𝗘𝗡%20𝗗𝗘𝗦𝗔𝗥𝗥𝗢𝗟𝗟𝗢-black?style=flat-square"/>
+  <img src="https://img.shields.io/badge/🏗️%20𝗘𝗡%20𝗗𝗘𝗦𝗔𝗥𝗥𝗢𝗟𝗟𝗢-black?style=for-the-badge"/>
 </p>
 
 
@@ -68,11 +68,23 @@
 
 <hr />
 
-## 1.1 - TODO 
+## 1.1 - Definición de la concurrencia 
 
 TODO
 
-# 2. TODO
+## 1.2 - Tipos de aplicaciones 
+
+TODO
+
+## 1.3 - Procesos e hilos
+
+TODO
+
+## 1.4 - Beneficios e incovenientes de la concurrencia
+
+TODO
+
+# 2. BIBLIOGRAFÍA 
 
 <hr />
 
