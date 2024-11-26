@@ -2,7 +2,7 @@
   <img width=100% src="https://github.com/MohamedLargoYagoubi/Java-Concurrency_and_Parallelism/blob/main/media/banner.gif" /> 
 </p>
 
-<h1 align="center">INTRODUCCIÓN</h1>
+<h1 align="center">JAVA THREADS</h1>
 
 <div align="center">
   <b>
@@ -64,15 +64,61 @@
 </div>
 
 
-# 1. INTRODUCCIÓN A LA CONCURRENCIA
+# 1. HILOS EN JAVA
 
 <hr />
 
-## 1.1 - Definición de la concurrencia 
+## 1.1 - Ciclo de la máquina virutal de Java (JVM)
 
-La concurrencia se define como la capacidad de un sistema para descomponer un programa en partes que pueden ser ejecutadas independientemente unas de otras. No significa necesariamente que estas partes se ejecuten de forma simultánea (paralelismo), sino que el sistema puede gestionarlas de manera intercalada, compartiendo recursos y tiempos de ejecución de manera eficiente.
+TODO 
 
-Por lo tanto, un hilo o thread es una unidad pequeña de procesamiento que puede ser gestionada de manera independiente por el sistema operativo o por bibliotecas a nivel de usuario. Los hilos pueden ejecutarse de manera intercalada en procesadores de un solo núcleo, o en paralelo en sistemas con múltiples núcleos, creando la ilusión de que todos los hilos están en ejecución simultánea.
+## 1.2 - Aplicaciones Multi-hilo 
+
+TODO 
+
+# 2. CREACIÓN DE HILOS
+
+<hr />
+
+## 2.1 - Creación de hilos
+
+TODO 
+
+## 2.2 - Extendiendo la clase Thread
+
+TODO 
+
+## 2.3 - Implementar la interface Runnable 
+
+TODO 
+
+
+# 3. CICLO DE VIDA DE LOS HILOS
+
+<hr />
+
+## 3.1 - Estados de los hilos 
+
+TODO 
+
+
+# 4. FACTORÍA DE HILOS
+
+<hr />
+
+## 4.1 - Patrón Factory 
+
+TODO 
+
+
+# 5. GESTIÓN DE EXCEPCIONES EN HILOS
+
+<hr />
+
+## 4.1 - Patrón Factory 
+
+TODO 
+
 
 ## 1.2 - Procesos e hilos
 
