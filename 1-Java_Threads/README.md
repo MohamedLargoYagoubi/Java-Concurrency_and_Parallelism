@@ -68,13 +68,15 @@
 
 <hr />
 
-## 1.1 - Ciclo de la máquina virutal de Java (JVM)
+## 1.1 - Aplicaciones Multi-hilo en Java
 
-TODO 
 
-## 1.2 - Aplicaciones Multi-hilo 
+Java proporciona soporte integrado para la programación multihilo mediante la siguiente forma:
+1.	Cuando se inicia máquina virtual de Java (JVM), se crea un hilo que se ejecuta de inmediato, se le suele llamar **hilo principal** y su tarea será ejecutar el método `main()`.
+2.	El hilo principal ejecuta las instrucciones del programa una por una.
+3.	De forma paralela se crea en el inicio de la JVM se crean otros hilos denominados **demonios** que se ejecutan en segundo plano y su función es apoyar la ejecución principal (por ejemplo, el Gargabe Collector). 
+4.	Después de ejecutar todas las sentencias el hilo principal finaliza, junto al resto de hlos.
 
-TODO 
 
 # 2. CREACIÓN DE HILOS
 
@@ -82,16 +84,123 @@ TODO
 
 ## 2.1 - Creación de hilos
 
-TODO 
+Además del hilo principal y los hilos demonio podemos crear hilos a merced mediante dos fromas distintas: **mediante herencia (extendiendo la clase Thread)** o **mediante composición (implementando la interface Runnable)**.
 
-## 2.2 - Extendiendo la clase Thread
+## 2.2 - Mediante herencia (extendiendo la clase Thread)
 
-TODO 
+1. Crear una subclase que extienda de la clase `Thread`.
+2. Sobrescribir el método `run()`, que contiene el código que ejecutará el hilo.
+3. Para iniciar el hilo habrá que instanciar la subclase y llamar al método `start()`.
 
-## 2.3 - Implementar la interface Runnable 
+### EJEMPLO: Extendiendo la clase Thread
+- **CÓDIGO** 
+```java
+class MiHilo extends Thread {
+    public void run() {
+        // Código que se ejecutará en el hilo
+        System.out.println("Hilo ejecutando...");
+    }
+}
+```
 
-TODO 
+ ```java
+public class EjemploHilo {
+    public static void main(String[] args) {
+        MiHilo hilo = new MiHilo();
+        hilo.start();
+    }
+}
+```
 
+- **SALIDA**
+
+`TODO SALIDA`
+
+## 2.3 - Mediante composición (implementando la interface Runnable)
+
+1. Crear una subclase que implemente interfaz `Runnable`. 
+2. Sobrescribir el método `run()`, que contiene el código que ejecutará el hilo.
+3. Para iniciar el hilo habrá que instanciar la subclase y pasarle como argumento al constructor un objeto tipo `Thread`, y finalmente llamar al método `start()`.
+
+### EJEMPLO: Implementando la interface Runnable 
+
+- **CÓDIGO** 
+```java
+class MiTarea implements Runnable {
+    public void run() {
+        // Código que se ejecutará en el hilo
+        System.out.println("Tarea ejecutando...");
+    }
+}
+```
+
+ ```java
+public class EjemploTarea {
+    public static void main(String[] args) {
+        MiTarea tarea = new MiTarea();
+        Thread hilo = new Thread(tarea);
+        hilo.start();
+    }
+}
+```
+
+- **SALIDA**
+
+`TODO SALIDA`
+
+Es más recomendable utilizar la interfaz Runnable ya que a pesar de ser una solución más compleja nos ofrece una gran flexibilidad, ya que la clase puede implementar múltiples interfaces.
+
+## 2.3 - Clase Thread  
+
+La clase Thread permite crear hilos y administrar su comportamiento, proporcionando constructores y métodos para realizar operaciones en los hilos. 
+
+### CONSTRUCTORES
+
+- `Thread()`
+- `Thread(String name)`
+- `Thread(Runnable target)`
+- `Thread(Runnable target, String name)`
+- `Thread(ThreadGroup group, Runnable target)`
+- `Thread(ThreadGroup group, Runnable target, String name)`
+- `Thread(ThreadGroup group, Runnable target, String name, Long stackSize)`
+- `Thread(ThreadGroup group, String name)`
+
+
+| ARGUMENTO | DESCRIPCIÓN |
+| :-: | :-: | 
+| **ThreadGroup group**  | Colección de hilos que pueden ser gestionados como una unidad.  | 
+| **Runnable target**  | Un `Runnable` es una interfaz funcional que define el método `run()`, contiene el código que se ejecutará en el hilo.  | 
+| **String name** | Permite asignar nombres identificativos a hilos, útil para la depuración y el seguimiento de la ejecución de los hilos.  | 
+| **long stackSize**  | Cantidad de memoria que se asignará para la pila del hilo. | 
+
+
+### MÉTODOS
+
+| MÉTODO | DESCRIPCIÓN |
+| :-: | :-: | 
+| **void start()**  | Inicia la ejecución del hilo. El método `run()` del hilo se llama por el sistema de hilos de Java. | 
+| **void run()**  | Este método contiene el código que se ejecutará en el hilo. Es necesario sobrescribirlo cuando se crea una subclase de Thread. | 
+| **void stop()** | Este método detiene el hilo. Sin embargo, está obsoleto y no se recomienda su uso debido a problemas de seguridad y consistencia. | 
+| **void yield()**  | Hace que el hilo actual ceda el procesador, permitiendo que otros hilos de igual prioridad puedan ejecutarse. | 
+| **int getId()**  | Devuelve el identificador único del hilo. | 
+| **public static Thread currentThread()**  | Devuelve una referencia al hilo que está ejecutándose actualmente. | 
+| **String getName()**  | Devuelve el nombre del hilo. | 
+| **setName(String name)**  | Establece el nombre del hilo. | 
+| **int getPriority()**  | Devuelve la prioridad del hilo. | 
+| **setPriority(int priority)**  | Establece la prioridad del hilo. | 
+| **Thread.State getState()**  | Devuelve el estado actual del hilo (por ejemplo, `NEW`, `RUNNABLE`, `BLOCKED`, `WAITING`, `TIMED_WAITING`, `TERMINATED`). | 
+| **Boolean isAlive()**  | Indica si el hilo está vivo. | 
+| **Boolean isDaemon()**  | Indica si el hilo es un hilo demonio. | 
+| **Boolean isInterrupted()**  | Indica si el hilo ha sido interrumpido. | 
+| **void join()**  | Espera a que el hilo termine su ejecución. | 
+| **void join(long millis)**  | Espera como máximo el tiempo especificado (en milisegundos) a que el hilo termine su ejecución. | 
+| **void interrupt()**  | Interrumpe el hilo. | 
+| **void setDaemon(boolean on)**  | Marca el hilo como un hilo demonio o no. | 
+| **void checkAccess()**  | Comprueba si el hilo actual tiene permiso para modificar este hilo. | 
+| **int activeCount()**  | Devuelve una estimación del número de hilos activos en el grupo de hilos actual. | 
+| **static void sleep(long millis)**  | Hace que el hilo actual se suspenda durante el tiempo especificado (en milisegundos). | 
+| **StackTraceElement[] getStackTrace()**  | Devuelve una matriz de elementos de traza de pila que representan la traza de pila de este hilo. | 
+| **ThreadGroup getThreadGroup()**  | Devuelve el grupo de hilos al que pertenece este hilo. | 
 
 # 3. CICLO DE VIDA DE LOS HILOS
 
@@ -99,7 +208,17 @@ TODO
 
 ## 3.1 - Estados de los hilos 
 
-TODO 
+<p align="center">
+  <img width="500" height="300" src="https://media.geeksforgeeks.org/wp-content/uploads/20240318155846/Lifecycle-and-States-of-a-Thread-in-Java-1.png" />
+</p>
+
+-	**New**(nuevo estado o creado) : Se crea una instancia de la clase Thread o de una clase que implementa `Runnable`, pero aún no se llama a su método `start()`).
+-	**Runnable** (ejecutable) : El hilo está listo para ejecutarse, es decir se ha llamado al método `start()` y puede ser ejecutado por la JVM, pero no necesariamente está en ejecución activa. El hilo entra en la cola de hilos listos y espera a que se le asignen recursos.
+-	**Running** (ejecutándose) : El sistema operativo selecciona al hilo para ejecutarlo en un procesador, se ejecuta el método `run()`.
+-	**Blocked State** (bloqueado) : El hilo intenta acceder a un recurso bloqueado por otro hilo. Por ejemplo, entra en un bloque synchronized ocupado ya por otro hilo.
+-	**Waiting State** (espera) : El hilo entra en este estado cuando está esperando indefinidamente en un `wait()` a que otro hilo lo notifique de que puede continuar. No ejecuta ninguna acción hasta que otro hilo lo notifique mediante `notify()` o `notifyAll()`.
+-	**Timed Waiting State** (dormido) : El hilo regresará al estado ejecutable si no se produce la notificación antes de que expire el tiempo. Se usan los método `sleep(int milliseconds)`, `sleep(int milliseconds, int nanoseconds)` o `join(long milliseconds)`.
+-	**Terminated State** (finalizado) : La ejecución del hilo ha finalizado, ya sea porque completó su tarea (se ha completado el método `run()`) o porque fue interrumpido (se lanza una excepción no controlada). Seguidamente se invoca al método de destrucción del hilo `destroy()`.
 
 
 # 4. FACTORÍA DE HILOS
@@ -108,93 +227,134 @@ TODO
 
 ## 4.1 - Patrón Factory 
 
-TODO 
+Una `ThreadFactory` es una interfaz que proporciona Java y permite crear de manera estándar y flexible instancias de hilos, es especialmente útil en aplicaciones que requieren la creación de muchos hilos.
+
+### EJEMPLO: Uso del ThreadFactory
+- **PROBLEMA** 
+```java
+public class SimpleTask implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("Thread: " + Thread.currentThread().getName());
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 5; i++) {
+            Thread thread = new Thread(new SimpleTask());
+            thread.start();
+        }
+    }
+}
+```
+La anterior implementación presenta los siguientes problemas:
+
+·	Todos los hilos tienen nombres por defecto y no se pueden establecer otras propiedades como prioridad o estado daemon. Si se añaden estas propiedades en el código la sentencia `for` podría crecer en exceso.
+
+·	Si se necesita cambiar la configuración de los hilos, hay que modificar múltiples lugares en el código.
+
+·	No hay una forma sencilla de recopilar estadísticas sobre los hilos creados. 
+
+- **SOLUCIÓN** 
+```java
+public class DaemonThreadFactory implements ThreadFactory {
+    private int counter = 0;
+    private String name;
+
+    public DaemonThreadFactory(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public Thread newThread(Runnable r) {
+        Thread thread = new Thread(r, name + "-DaemonThread_" + counter);
+        thread.setDaemon(true);
+        counter++;
+        return thread;
+    }
+}
+```
+
+```java
+public class NormalThreadFactory implements ThreadFactory {
+    private int counter = 0;
+    private String name;
+
+    public NormalThreadFactory(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public Thread newThread(Runnable r) {
+        Thread thread = new Thread(r, name + "-NormalThread_" + counter);
+        counter++;
+        return thread;
+    }
+}
+```
+
+```java
+public class GroupThreadFactory implements ThreadFactory {
+    private int counter = 0;
+    private String name;
+    private ThreadGroup group;
+
+    public GroupThreadFactory(String name, ThreadGroup group) {
+        this.name = name;
+        this.group = group;
+    }
+
+    @Override
+    public Thread newThread(Runnable r) {
+        Thread thread = new Thread(group, r, name + "-GroupThread_" + counter);
+        counter++;
+        return thread;
+    }
+}
+```
+
+```java
+public class SimpleTask implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("Thread: " + Thread.currentThread().getName() + ", Daemon: " + Thread.currentThread().isDaemon());
+    }
+
+    public static void main(String[] args) {
+        DaemonThreadFactory daemonFactory = new DaemonThreadFactory("DaemonFactory");
+        NormalThreadFactory normalFactory = new NormalThreadFactory("NormalFactory");
+        ThreadGroup group = new ThreadGroup("Group");
+        GroupThreadFactory groupFactory = new GroupThreadFactory("GroupFactory", group);
+
+        for (int i = 0; i < 5; i++) {
+            Thread daemonThread = daemonFactory.newThread(new SimpleTask());
+            daemonThread.start();
+
+            Thread normalThread = normalFactory.newThread(new SimpleTask());
+            normalThread.start();
+
+            Thread groupThread = groupFactory.newThread(new SimpleTask());
+            groupThread.start();
+        }
+    }
+}
+```
+
+Mejoras trás usar la interface `ThreadFactory` :
+
+·	Cada tipo de hilo tiene configuraciones específicas, como ser daemon o pertenecer a un grupo.
+
+·	La creación de hilos se gestiona en un solo lugar, facilitando cambios futuros.
+
+·	Es más fácil monitorear y gestionar hilos cuando están organizados en grupos o tienen nombres personalizados.
 
 
 # 5. GESTIÓN DE EXCEPCIONES EN HILOS
 
 <hr />
 
-## 4.1 - Patrón Factory 
+## 5.1 - TODO
 
 TODO 
-
-
-## 1.2 - Procesos e hilos
-
-Un proceso es una instancia de un programa en ejecución y posee los siguientes elementos:
--	**Stack o pila:** contiene un historial de ejecución donde se almacenan variables locales, direcciones de retorno y datos de la función en ejecución.
--	**Heap o montón:** es el área de memoria dinámica (creación de objetos).
--	**Espacio de datos y código:** segmentos de datos (globales, estáticos) y código (instrucciones ejecutables).
-
-Un proceso posee memoria aislada de otro proceso, y para compartir datos se requerirá de mecanismos como pipes o memorias compartidas.
-Por otro lado, los hilos, procesos ligeros o mini procesos, comparten el heap y los datos globales del proceso, pero tienen stacks individuales. Es decir, un hilo tiene un historial de ejecución distinto al resto de los hilos. Además, tampoco están aislados unos de otros, lo que puede provocar problemas de sincronización como condiciones de carrera.
-
-
-## 1.3 - Simultáneamente y al mismo tiempo  
-
-Aunque los términos “mismo tiempo” y “simultáneamente” puedan parecer sinónimos, no son equivalentes y tienen matices importantes:
--	**Mismo tiempo:** Dos o más procesos ocurren en el mismo periodo de tiempo. Esto no implica necesariamente que las tareas que ejecuta cada proceso comiencen y terminen al mismo tiempo.
--	**Simultáneamente:** Dos o más procesos se ejecutan literalmente al mismo tiempo, lo cual implica que diferentes recursos de hardware están trabajando en paralelo. No requiere que las tareas comiencen ni terminen al mismo tiempo, pero sí que se ejecuten en el mismo instante en diferentes núcleos o procesadores.
-
-> [!TIP]
-> **ANALOGÍA:**
-> - Si dos personas (procesos) dialogan en el mismo tiempo, significa que cada intervención (tarea) de ambas personas se intercala, pero no se solapan. Esto es como la concurrencia.
-> - Si dos personas (procesos) dialogan simultáneamente, significa que ambas hablan exactamente al mismo tiempo, como ocurre en el paralelismo.
-
-
-
-## 1.4 - Tipos de aplicaciones
-
-Definiremos la siguiente clasificación de los programas en función de su modelo de ejecución y gestión de tareas: 
-
-<div align="center">
-
-  | TIPO DE APLICACIÓN | DEFINICIÓN | REQUERIMIENTOS DE HARDWARE |
-| :-: | :-: | :-: |
-| **👤 Secuencial**  | Tarea única | 1 procesador o núcleo |
-| **🧵 Concurrente**  | Tareas intercaladas | 1 procesador o núcleo |
-| **👥 Paralela** | Tareas simultáneas  | Múltiples núcleos o procesador  |
-| **🌐 Distribuida**  | Tareas distribuidas  | Sistemas en red |
-
-</div>
-
-
-### **1. Aplicaciones secuenciales:**
-
-Orden estrictamente lineal, cada paso del programa debe completarse antes de que se inicie el siguiente. Todas las operaciones se ejecutan en un único flujo de control (hilo de ejecución) y en un único procesador o núcleo.
-
-> [!TIP]
-> **ANALOGÍA:**
-> 
-> Un cocinero sigue una receta paso a paso. Solo prepara un plato a la vez y no comienza un nuevo paso de la receta hasta que termina el anterior. Por ejemplo, primero corta las verduras, luego las cocina y finalmente emplata el plato.
-
-### **2. Aplicaciones concurrentes:**
-
-Formadas por múltiples tareas independientes que se intercalan y ejecutan al mismo tiempo, pero no necesariamente se ejecutan simultáneamente y suelen gestionarse por múltiplos hilos o procesos ligeros.
-
-> [!TIP]
-> **ANALOGÍA:**
-> 
-> El cocinero ahora gestiona múltiples recetas al mismo tiempo. Mientras las verduras se cocinan en el horno, comienza a cortar otros ingredientes o mezcla una salsa. Aunque trabaja en varias tareas a la vez, solo realiza una acción a la vez (por ejemplo, no puede cortar y mezclar simultáneamente).
-
-### **3. Aplicaciones paralelas:**
-
-Múltiples tareas se ejecutan simultáneamente en múltiples procesadores o núcleos. Estas aplicaciones se ejecutan simultáneamente, es decir múltiples instrucciones se ejecutan al mismo tiempo.
-
-> [!TIP]
-> **ANALOGÍA:**
-> 
-> Tenemos varios cocineros trabaja en una tarea diferente de forma simultánea. Por ejemplo, mientras un cocinero corta los vegetales, otro mezcla la salsa y un tercero cocina la carne. Cada tarea avanza en paralelo, acelerando el tiempo total de preparación.
-
-### **4. Aplicaciones distribuidas:**
-
-Los programas se ejecutan en sistemas independientes y separados físicamente (como en diferentes máquinas conectadas por una red). Los programas deben compartirse la infromación entre ellos mediante mensajes.
-
-> [!TIP]
-> **ANALOGÍA:**
-> 
-> Cada cocinero tiene su propia cocina y se encarga de una parte específica del menú. Por ejemplo, un cocinero en una cocina prepara la ensalada, otro elabora la sopa en otra ubicación, y un tercero hornea el postre en otro lugar. Al final, los platos se reúnen para servir la comida completa.
 
 
 # 2. BIBLIOGRAFÍA 
