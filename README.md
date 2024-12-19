@@ -59,12 +59,8 @@
 
 1. [Java Threads](https://github.com/MohamedLargoYagoubi/Java-Concurrency_and_Parallelism/tree/main/1-Java_Threads)
 2. [APIs de Concurrencia de Alto Nivel](https://github.com/MohamedLargoYagoubi/Java-Concurrency_and_Parallelism/tree/main/2-High_Level_Concurrent_APIs)
-3. Lorem Ipsum
-    1. Lorem Ipsum
-    2. Lorem Ipsum
-        1. Lorem Ipsum
-    4. Lorem Ipsum
-5. Lorem Ipsum
+3. [Sincronización](https://github.com/MohamedLargoYagoubi/Java-Concurrency_and_Parallelism/tree/main/3-Synchronism)
+4. [PThreads](https://github.com/MohamedLargoYagoubi/Java-Concurrency_and_Parallelism/tree/main/4-Pthreads)
 
 # 1. INTRODUCCIÓN A LA CONCURRENCIA
 
