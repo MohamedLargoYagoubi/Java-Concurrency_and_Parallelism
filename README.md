@@ -59,32 +59,32 @@
 
 1. [Java Threads](https://github.com/MohamedLargoYagoubi/Java-Concurrency_and_Parallelism/tree/main/1-Java_Threads)
 
-   ↳ 📁 **Ejercicio - Sesión 1:** SumatorioSec.zip
+   ↳ 📁 **Ejercicio - Sesión 1:** SumatorioSec.zip ✅
    
-   ↳ 📁 **Ejercicio - Sesión 2:** ProcesarFicheros.zip
+   ↳ 📁 **Ejercicio - Sesión 2:** ProcesarFicheros.zip ✅
    
 2. [APIs de Concurrencia de Alto Nivel](https://github.com/MohamedLargoYagoubi/Java-Concurrency_and_Parallelism/tree/main/2-High_Level_Concurrent_APIs)
 
 
-   ↳ 📁 **Ejercicio - Sesión 3:** SumatorioSec.zip
+   ↳ 📁 **Ejercicio - Sesión 3:** SumatorioSec.zip ✅
    
-   ↳ 📁 **Ejercicio - Sesión 4:** MergeSort.zip
+   ↳ 📁 **Ejercicio - Sesión 4:** MergeSort.zip ✅
    
 
 3. [Sincronización](https://github.com/MohamedLargoYagoubi/Java-Concurrency_and_Parallelism/tree/main/3-Synchronism)
 
 
-   ↳ 📁 **Ejercicio - Sesión 5:** SumatorioConc.zip (con Athomic)
+   ↳ 📁 **Ejercicio - Sesión 5:** SumatorioConc.zip (con Athomic) ✅
    
-   ↳ 📁 **Ejercicio - Sesión 6:** SumatorioConc2.zip
+   ↳ 📁 **Ejercicio - Sesión 6:** SumatorioConc2.zip ❌
    
 
 4. [PThreads](https://github.com/MohamedLargoYagoubi/Java-Concurrency_and_Parallelism/tree/main/4-Pthreads)
 
 
-   ↳ 📁 **Ejercicio - Sesión 7:** Sumatorio.zip
+   ↳ 📁 **Ejercicio - Sesión 7:** Sumatorio.zip ✅
    
-   ↳ 📁 **Ejercicio - Sesión 8:** ProductorConsumidor.zip
+   ↳ 📁 **Ejercicio - Sesión 8:** ProductorConsumidor.zip ✅
    
 
 # 1. INTRODUCCIÓN A LA CONCURRENCIA
