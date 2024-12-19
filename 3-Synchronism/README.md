@@ -425,6 +425,4 @@ public class EjemploHilo {
 
 `TODO SALIDA`
 
-## 2.3 - Mediante composición (implementando la interface Runnable)
-
-1. Crea
+## 2.3 - 👷🏻 TODO
