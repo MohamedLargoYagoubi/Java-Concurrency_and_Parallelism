@@ -3,15 +3,13 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Main
-{
-    static int N=100;      // Number of elements to sort.
+public class Main {
+    static int N = 100; // Number of elements to sort.
 
     // Driver code
-    public static void main(String args[])
-    {
-        if (args.length>0)
-            N=Integer.parseInt(args[0]);
+    public static void main(String args[]) {
+        if (args.length > 0)
+            N = Integer.parseInt(args[0]);
 
         // Init numbers array randomly.
         int[] Array = new int[N];
@@ -19,9 +17,9 @@ public class Main
 
         MergeSort merge_sec = new MergeSort();
 
-        if (N<=200) {
+        if (N <= 200) {
             System.out.printf("[SEQUENTIAL MERGE SORT %d] Original array: ", N);
-            merge_sec.printArray(Array);
+            merge_sec.printArray(Array, N);
         }
         Instant start = Instant.now();
 
@@ -30,22 +28,20 @@ public class Main
         Instant finish = Instant.now();
 
         System.out.printf("[SEQUENTIAL MERGE SORT %d] Result   array: ", N);
-        merge_sec.printArray(Arrays.copyOfRange(Array, 0, 200));
+        merge_sec.printArray(Array, N);
 
-        long timeElapsed = Duration.between(start, finish).toMillis();  //in millis
-        System.out.printf("[SEQUENTIAL MERGE SORT %d] Total execution time: %.3f secs.\n", N, timeElapsed/1000.0);
+        long timeElapsed = Duration.between(start, finish).toMillis(); // in millis
+        System.out.printf("[SEQUENTIAL MERGE SORT %d] Total execution time: %.3f secs.\n", N, timeElapsed / 1000.0);
     }
 
-    static void generateArray(int randomArray[])
-    {
+    static void generateArray(int randomArray[]) {
         // Create a Random object
-        Random random = new Random(10);
+        Random random = new Random();
 
         // Assign random values to the array
-        for (int i = 0; i < N; i++) {
-            // Generate a random integer
-            // between INT_MIN and INT_MAX
-            randomArray[i] = random.nextInt(0,N);
+        for (int i = 0; i < randomArray.length; i++) {
+            // Generate a random integer between 0 and N
+            randomArray[i] = random.nextInt(N);
         }
     }
 }
